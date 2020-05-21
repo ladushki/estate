@@ -135,4 +135,26 @@ class Property extends Model implements \App\Interfaces\Searchable
     {
         return new static;
     }
+
+    private function rules()
+    {
+        return [
+            'uuid' => 'required',
+            'address' => 'required',
+            'property_type_id' => 'required|integer',
+            'county' => 'required',
+            'country' => 'required',
+            'town' => 'required',
+            'description' => 'required',
+            'image_full' => 'required',
+            'image_thumbnail' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'num_bedrooms' => 'required|integer',
+            'num_bathrooms' => 'required|integer',
+            'price' =>'required|integer',
+            'type' => 'required',
+            'last_modified' => 'required',
+        ];
+    }
 }

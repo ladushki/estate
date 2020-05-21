@@ -6,6 +6,7 @@ use App\PropertyType;
 use App\Values\Result;
 use App\Services\TrialApi;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Log;
 use App\Repositories\PropertyRepository;
 use App\Repositories\PropertyTypeRepository;
 
@@ -56,15 +57,20 @@ class PropertyImporterHandler
         $this->errors = null;
         $start = microtime(true);
 
+        Log::info('Import started');
+
         foreach ($items as $item) {
             try {
                 $this->typeRepo->save($item['property_type']);
                 $mapped = $this->map($item);
                 $saved += (int) $this->repository->save($mapped);
             } catch (\Throwable $exception) {
+                Log::critical($exception->getMessage());
+                dd($exception);
                 $this->addError($exception);
             }
         }
+
 
         $failed = $this->errors ? count($this->errors) : 0;
         $total = count($items);
@@ -72,14 +78,18 @@ class PropertyImporterHandler
         $data = compact('failed', 'total', 'saved', 'time');
 
         if ($failed === $total) {
-            return new Result('failure', 'The import was not successful',
-                $data);
+            Log::error('Report was not successful');
+
+            return new Result('failure', 'The import was not successful', $data);
         }
 
         if ($failed) {
+            Log::error('Import ended with errors');
+
             return new Result('error', 'The import was not successful. Saved ' . $saved . ' items',
                 $data);
         }
+        Log::error('Import ended successfully');
 
         return new Result('success', 'The import was successful for ' . $saved . 'items', $data);
     }

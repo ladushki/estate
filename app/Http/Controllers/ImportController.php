@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Log\Logger;
+use Illuminate\Support\Facades\Log;
 use App\Handlers\PropertyImporterHandler;
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -30,6 +32,7 @@ class ImportController extends BaseController
         try {
             $result = $handler->handle();
         } catch (\Throwable $exception) {
+            Log::critical($exception->getMessage());
             abort(500, $exception->getMessage());
         }
 
