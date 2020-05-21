@@ -66,7 +66,6 @@ class PropertyImporterHandler
                 $saved += (int) $this->repository->save($mapped);
             } catch (\Throwable $exception) {
                 Log::critical($exception->getMessage());
-                dd($exception);
                 $this->addError($exception);
             }
         }
