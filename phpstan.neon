@@ -1,0 +1,17 @@
+includes:
+	- ./vendor/nunomaduro/larastan/extension.neon
+parameters:
+    checkMissingIterableValueType: false
+    excludes_analyse:
+        - src/routes.php
+        - src/helpers.php
+        - src/EuroCarPartsServiceProvider.php
+        - src/Factories/UrlFactory.php
+        - src/Commands/Main/MasterCommand.php
+        - src/Commands/Main/ImportAll.php
+        - src/Commands/Main/GenerateAll.php
+    reportUnmatchedIgnoredErrors: false
+    ignoreErrors:
+        - '#Access to an undefined property EuroCarParts\\Client\\Models#'
+        - '#Call to an undefined method EuroCarParts\\Client\\Models#'
+        - '#Unsafe usage of new static#'
