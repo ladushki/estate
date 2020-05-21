@@ -45,6 +45,9 @@
                             <li class="nav-item">
                                 <a href="/listing/rent" class="nav-link">Rent</a>
                             </li>
+                            <li class="nav-item">
+                                <a href="/import" class="nav-link">Import</a>
+                            </li>
                         </ul>
 
                 </div>

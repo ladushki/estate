@@ -60,7 +60,9 @@
     },
     "autoload-dev": {
         "psr-4": {
-            "Tests\\": "tests/"
+            "Tests\\": "tests/",
+            "Tests\\Feature\\": "tests/Feature",
+            "Tests\\Unut\\": "tests/Unit"
         }
     },
     "minimum-stability": "dev",
