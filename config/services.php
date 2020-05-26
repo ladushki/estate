@@ -32,6 +32,6 @@ return [
 
     'api' => [
         'base'=> env('API_BASE_URL', 'http://trialapi.craig.mtcdevserver.com'),
-        'key'=> env('API_KEY', '3NLTTNlXsi6rBWl7nYGluOdkl2htFHug'),
+        'key'=> env('API_KEY'),
     ]
 ];
